@@ -1,4 +1,4 @@
-findingaids
+Finding Aid Creation Tool
 ===========
 
-Prompt for data to convert to an EAD-formatted XML file for use in the Virginia Heritage Database and elsewhere.
+This script allows users to create EAD compliant files without messing about with XML. I hope it will be great for volunteers and any non-techie staff to whom code looks scary!
