@@ -1,0 +1,21 @@
+#!/usr/bin/python
+import datetime
+now = datetime.datetime.now()
+ti = raw_input('Title of Collection: ')
+file = open(ti + '.xml','w')
+da = raw_input('Date or Date Range: ')
+ke = raw_input('Keywords describing collection (separated by commas): ')
+acc = raw_input('Accession Number: ')
+cre = raw_input('Aid created by whom, with what program: ')
+cda = raw_input('Date aid was created: ')
+phy = raw_input('Physical Description of Collection: ')
+use = raw_input('Access or Use Restrictions (Typically Blank): ')
+pro = raw_input('Provenance of Collection: ')
+bio = raw_input('Biographical Note: ')
+scope = raw_input('Scope and Content: ')
+org = raw_input('Organizational Method: ')
+
+out = '<?xml version="1.0"?>\n<?xml-stylesheet href="http://ead.lib.virginia.edu/vivaead/published/document.xsl" type="text/xsl"?>\n<!DOCTYPE ead SYSTEM "http://text.lib.virginia.edu/bin/dtd/eadVIVA/eadVIVA.dtd" [\n<!ENTITY % xmlchar "INCLUDE">\n<!ENTITY logo SYSTEM "http://ead.lib.virginia.edu/vivaead/logos/RPLlogo.jpg" NDATA jpeg>\n<!ENTITY conditions SYSTEM "http://www.lib.virginia.edu/speccol/vhp/conditions.html" NDATA html>\n<!ENTITY address SYSTEM "http://ead.lib.virginia.edu/vivaead/add_con/rpl_address.xml">\n<!ENTITY contact SYSTEM "http://ead.lib.virginia.edu/vivaead/add_con/rpl_contact.xml">\n]><ead id="EADID">/n<eadheader audience="internal" langencoding="iso639-2b" findaidstatus="edited-partial-draft">\n<eadid countrycode="US" mainagencycode="Viro">PUBLIC "-//Roanoke Public Libraries//TEXT (US::viro::EADID::SHORT TITLE//EN" "EADID.xml"\n</eadid>\n<filedesc>\n<titlestmt>\n<titleproper>'+ti+'<date>'+da+'</date>\n</titleproper>\n<subtitle id="sort">'+ke+'\n<num type="collectionnumber">'+acc+'</num>\n</subtitle>\n</titlestmt>\n<publicationstmt>\n<publisher>Roanoke Public Libraries\n</publisher> &address;\n<date type="publication">&#169; '+str(now.year)+' By the Roanoke Public Libraries. All rights reserved.\n</date>\n<p id="usestatement">\n<extref entityref="conditions">Conditions of Use\n</extref>\n</p>\n</publicationstmt>\n</filedesc>\n<profiledesc>\n<creation>'+cre+', <date>'+cda+'</date>\n</creation>\n<langusage>Description is in <language langcode="eng">English</language>\n</langusage>\n</profiledesc>\n</eadheader>\n<frontmatter>\n<titlepage>\n<titleproper>'+ti+',<date>'+da+'</date>\n</titleproper>\n<subtitle>A Collection in the Virginia Room at the <lb/>Roanoke Public Libraries\n<num type="Accession Number">'+acc+'</num>\n</subtitle>\n<p id="logostmt">\n<extptr actuate="onload" show="embed" entityref="logo"/>\n</p>\n<publisher>Roanoke Public Libraries\n</publisher>\n<date type="publication">'+str(now.year)+'</date> &contact;\n<list type="deflist">\n<defitem>\n<label>Processed by:\n</label>\n<item>Virginia Room Staff\n</item>\n</defitem>\n</list>\n</titlepage>\n</frontmatter>\n<archdesc level="collection">\n<runner placement="footer">Roanoke Public Libraries\n</runner>\n<did>\n<head>Descriptive Summary\n</head>\n<repository label="Repository" encodinganalog="852$a">Roanoke Public Libraries\n</repository>\n<unittitle label="Title" encodinganalog="245$a">'+ti+'</unittitle>\n<unitid label="Accession Number" encodinganalog="099$a">'+acc+'\n</unitid>\n<physdesc label="Physical Characteristics" encodinganalog="300$a">'+phy+'</physdesc>\n<langmaterial label="Language">\n<language langcode="eng">English\n</language>\n</langmaterial>\n</did>\n<descgrp type="admininfo">\n<head>Administrative Information\n</head>\n<accessrestrict encodinganalog="506$a">\n<head>Access Restrictions\n</head>\n<p>There are no restrictions.\n</p>\n</accessrestrict>\n<userestrict encodinganalog="540$a">\n<head>Use Restrictions\n</head>\n<p>There are no restrictions.\n</p>\n</userestrict>\n<prefercite encodinganalog="524$a">\n<head>Preferred Citation\n</head>\n<p>'+ti+', Accession #'+acc+', Roanoke Public Libraries, Roanoke, VA\n</p>\n</prefercite>\n<acqinfo encodinganalog="541$a">\n<head>Acquisition Information\n</head>\n<p>'+pro+'</p>\n</acqinfo>\n</descgrp>\n<bioghist encodinganalog="545$a">\n<head>Biographical Note\n</head><p>'+bio+'</p>\n</bioghist>\n<scopecontent encodinganalog="520$a">\n<head>Scope and Content\n</head>\n<p>'+scope+'</p>\n</scopecontent>\n<arrangement encodinganalog="351">\n<head>Arrangement\n</head>\n<p>'+org+'</p>\n</arrangement>\n</archdesc>\n</ead>'
+
+file.write(out)
+file.close()
